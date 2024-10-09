@@ -95,5 +95,7 @@ iOS: Go to Settings > Face ID & Passcode or Settings > Touch ID & Passcode.
 ```
 
 ## 🎥 Photos
-![Image](assets/images/screen1.jpg)
-![Image](assets/images/screen1.jpg)
+<div>
+  <img src="assets/images/screen2.jpg" alt="Image 1" width="200" height="450" style="display: inline-block; margin-right: 10px;"/>
+  <img src="assets/images/screen1.jpg" alt="Image 2" width="200" height="450" style="display: inline-block;"/>
+</div>

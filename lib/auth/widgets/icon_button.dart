@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:password_manager/core/constants/app_colors.dart';
 
 class MyIconButton extends StatefulWidget {
   final Function()? onTap;
@@ -22,11 +23,11 @@ class _MyIconButtonState extends State<MyIconButton> {
         child: Container(
             height: 55,
             width: 55,
-            color: const Color.fromARGB(255, 87, 88, 88),
+            color: const Color(0xff00c600),
             child: const Icon(
               Icons.fingerprint_outlined,
               size: 30,
-              color: Color(0xffffffff),
+              color: AppColors.backgroundColor,
             )),
       ),
     );

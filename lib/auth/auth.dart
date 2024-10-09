@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconly/iconly.dart';
 import 'package:password_manager/service/local_auth.dart';
-import 'package:password_manager/widgets/button.dart';
-import 'package:password_manager/widgets/icon_button.dart';
-import 'package:password_manager/widgets/textfield.dart';
+import 'package:password_manager/auth/widgets/button.dart';
+import 'package:password_manager/core/constants/app_colors.dart';
+import 'package:password_manager/core/utils/app_helpers.dart';
+import 'package:password_manager/presentation/pages/mainscreen.dart';
+import 'package:password_manager/presentation/widgets/custom_textfield.dart';
+import 'package:password_manager/auth/widgets/icon_button.dart';
 
 class Auth extends StatefulWidget {
   const Auth({super.key});
@@ -36,7 +39,7 @@ class _AuthState extends State<Auth> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: const Color(0xff1c1c1c),
+        backgroundColor: AppColors.backgroundColor,
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -87,7 +90,7 @@ class _AuthState extends State<Auth> {
     return Column(
       children: [
         const SizedBox(height: 35),
-        MyTextField(
+        CustomTextField(
           controller: mobileController,
           hintText: 'Mobile Number',
           isObscure: false,
@@ -95,7 +98,7 @@ class _AuthState extends State<Auth> {
           labelText: 'User ID',
         ),
         const SizedBox(height: 20),
-        MyTextField(
+        CustomTextField(
           controller: mobileController,
           hintText: 'Your MPIN/Password',
           isObscure: true,
@@ -105,10 +108,10 @@ class _AuthState extends State<Auth> {
         const SizedBox(height: 40),
         _buildRememberAndForgotRow(),
         const SizedBox(height: 40),
-        _buildLoginButtons(),
+        _buildLoginButtons(context),
         const SizedBox(height: 30),
         _buildHelpAndSupportBox(),
-        const SizedBox(height: 80),
+        const SizedBox(height: 70),
         _buildRegisterText(),
       ],
     );
@@ -138,16 +141,31 @@ class _AuthState extends State<Auth> {
     );
   }
 
-  Widget _buildLoginButtons() {
+  Widget _buildLoginButtons(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         MyButton(
           text: 'LOGIN',
-          background: const Color.fromARGB(255, 0, 110, 0),
+          background: const Color.fromARGB(255, 73, 73, 73),
           foreground: const Color(0xffffffff),
-          onTap: () {
-            // Implement login functionality here
+          onTap: () async {
+            bool isAuthenticated =
+                await _authService.authenticateWithBiometrics(context);
+
+            if (isAuthenticated) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                    content: Text('Biometric Authentication Success')),
+              );
+              AppHelpers.navigateTo(context, const MainScreen());
+            } else {
+              // Show error message if authentication fails
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                    content: Text('Biometric Authentication Failed')),
+              );
+            }
           },
         ),
         MyIconButton(
@@ -160,6 +178,7 @@ class _AuthState extends State<Auth> {
                 const SnackBar(
                     content: Text('Biometric Authentication Success')),
               );
+              AppHelpers.navigateTo(context, const MainScreen());
             } else {
               // Show error message if authentication fails
               ScaffoldMessenger.of(context).showSnackBar(
@@ -179,7 +198,8 @@ class _AuthState extends State<Auth> {
       width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: Colors.grey, width: 0.1),
+        border: Border.all(
+            color: const Color.fromARGB(255, 134, 134, 134), width: 0.1),
       ),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -197,9 +217,9 @@ class _AuthState extends State<Auth> {
                 Text(
                   '24x7 Help & Support',
                   style: GoogleFonts.poppins(
-                    fontSize: 14,
+                    fontSize: 13,
                     fontWeight: FontWeight.w500,
-                    color: Colors.white,
+                    color: AppColors.textLightColor,
                   ),
                 ),
                 Text(
@@ -207,7 +227,7 @@ class _AuthState extends State<Auth> {
                   style: GoogleFonts.poppins(
                     fontSize: 12,
                     fontWeight: FontWeight.w400,
-                    color: Colors.white,
+                    color: AppColors.textLightColor,
                   ),
                 ),
               ],

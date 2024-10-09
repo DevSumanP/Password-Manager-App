@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:password_manager/core/constants/app_text_styles.dart';
 
-class MyButton extends StatefulWidget {
+class CustomButton extends StatefulWidget {
   final String text;
   final Color background;
   final Color foreground;
   final Function()? onTap;
 
-  const MyButton({
+  const CustomButton({
     super.key,
     required this.text,
     required this.background,
@@ -16,23 +16,23 @@ class MyButton extends StatefulWidget {
   });
 
   @override
-  _MyButtonState createState() => _MyButtonState();
+  _CustomButtonState createState() => _CustomButtonState();
 }
 
-class _MyButtonState extends State<MyButton> {
+class _CustomButtonState extends State<CustomButton> {
   bool _isLoading = false;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 55,
-      width: 290,
+      width: double.infinity,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           backgroundColor: widget.background,
           foregroundColor: widget.foreground,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(18),
+            borderRadius: BorderRadius.circular(12),
           ),
         ),
         onPressed: () async {
@@ -56,14 +56,7 @@ class _MyButtonState extends State<MyButton> {
             : Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(
-                    widget.text,
-                    style: GoogleFonts.poppins(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w500,
-                      color: widget.foreground,
-                    ),
-                  ),
+                  Text(widget.text, style: AppTextStyles.buttonText),
                 ],
               ),
       ),
