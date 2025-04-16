@@ -1,6 +1,6 @@
-# 🎌 Anime Companion App
+# 🔒 Biometric Authentication App
 
-A Flutter application designed to be your go-to companion for all things anime! This app allows users to view detailed anime information, track new releases, and receive notifications about upcoming episodes.
+A simple Flutter application that showcases the biometric authentication process. This app demonstrates how to implement biometric authentication using the device's built-in capabilities.
 
 ## 🛠️ Technologies
 
@@ -9,11 +9,8 @@ A Flutter application designed to be your go-to companion for all things anime! 
 
 ## ✨ Features
 
-- Browse detailed information about various anime titles.
-- View lists of new releases, top-rated, and popular anime.
-- Check release dates for upcoming episodes.
-- Receive notifications for new episodes.
-- User-friendly interface for seamless navigation.
+- Implements biometric authentication (fingerprint and facial recognition).
+- Provides a user-friendly interface to demonstrate the authentication process.
 
 ## 🚦 Running the Project
 
@@ -22,8 +19,8 @@ To run the project locally, follow these steps:
 1. **Clone the repository**:
 
     ```bash
-    git clone https://github.com/your-username/anime-companion.git
-    cd anime-companion
+    git clone https://github.com/your-username/biometric-authentication.git
+    cd biometric-authentication
     ```
 
 2. **Install dependencies**:
@@ -42,32 +39,50 @@ To run the project locally, follow these steps:
 
 ```bash
 lib/
+├── auth/
+│   ├── widgets/
+│   │   └── auth.dart                # Widgets for authentication logic
+├── core/                             # Core utilities or base classes
+├── data/                             # Data layer (repositories, data sources)
+├── database/                         # Database logic
+├── domain/
+│   ├── entities/
+│   │   └── account_entity.dart       # Entity representing account data
+│   ├── usecases/
+│   │   ├── add_account.dart          # Use case for adding an account
+│   │   ├── delete_account.dart       # Use case for deleting an account
+│   │   └── get_accounts.dart         # Use case for retrieving accounts
+├── presentation/
+│   ├── pages/
+│   │   ├── add_account_page.dart     # UI page for adding an account
+│   │   ├── home_page.dart            # UI for the home page
+│   │   └── mainscreen.dart           # Main screen of the app
+│   ├── widgets/                      # Widgets for UI
 ├── service/
-│   └── local_auth.dart    # Service for handling biometric authentication
-├── widgets/
-│   ├── button.dart        # Custom button widget
-│   ├── icon_button.dart   # Custom icon button widget
-│   └── textfield.dart     # Custom text field widget
-├── auth.dart              # Authentication logic
-└── main.dart              # Entry point of the application
-└── pubspec.yaml           # Project configuration and dependencies
+│   ├── encryption_handler.dart       # Logic for encryption
+│   ├── generate_key.dart             # Key generation logic for encryption
+│   └── local_auth.dart               # Local authentication logic (e.g., biometrics)
+└── main.dart                         # Entry point of the app
 ```
 
 ### 🔐 How It Works
 
-The app uses a public anime API to fetch details about various anime series. Users can explore new releases, popular titles, and detailed episode information.
-
-1. Home Page: Displays new releases and popular anime with easy navigation.
-2. Anime Details: Provides in-depth information about selected anime, including synopsis, genres,   ratings, and episode listings.
-3. Notification Feature: Users can enable notifications for their favorite anime, receiving alerts when new episodes are released.
-
-### 📲 Enabling Notifications
-
-To enable notifications for new episodes:
+The app uses the Local Authentication Plugin to access biometric sensors like fingerprint or face ID. Upon launching the app, users can tap a button to initiate biometric authentication. If the device supports biometrics and the user has registered their biometrics (e.g., fingerprint), the app prompts the user to authenticate.
 ```
-1. Allow notification permissions when prompted.
-2. Go to the settings in the app to manage notification preferences.
+If the authentication is successful, a success message is displayed.
+If the authentication fails, an error message is shown.
+```
+
+### 📲 Enabling Biometrics on Your Device
+
+Make sure biometric authentication is enabled on your device:
+```
+Android: Go to Settings > Security > Fingerprint/Face Unlock to enable biometrics.
+iOS: Go to Settings > Face ID & Passcode or Settings > Touch ID & Passcode.
 ```
 
 ## 🎥 Photos
-
+<div>
+  <img src="assets/images/screen2.jpg" alt="Image 1" width="200" height="450" style="display: inline-block; margin-right: 10px;"/>
+  <img src="assets/images/screen1.jpg" alt="Image 2" width="200" height="450" style="display: inline-block;"/>
+</div>
