@@ -1,6 +1,6 @@
-# 🔒 Biometric Authentication App
+# 🎌 Anime Companion App
 
-A simple Flutter application that showcases the biometric authentication process. This app demonstrates how to implement biometric authentication using the device's built-in capabilities.
+A Flutter application designed to be your go-to companion for all things anime! This app allows users to view detailed anime information, track new releases, and receive notifications about upcoming episodes.
 
 ## 🛠️ Technologies
 
@@ -9,8 +9,11 @@ A simple Flutter application that showcases the biometric authentication process
 
 ## ✨ Features
 
-- Implements biometric authentication (fingerprint and facial recognition).
-- Provides a user-friendly interface to demonstrate the authentication process.
+- Browse detailed information about various anime titles.
+- View lists of new releases, top-rated, and popular anime.
+- Check release dates for upcoming episodes.
+- Receive notifications for new episodes.
+- User-friendly interface for seamless navigation.
 
 ## 🚦 Running the Project
 
@@ -19,8 +22,8 @@ To run the project locally, follow these steps:
 1. **Clone the repository**:
 
     ```bash
-    git clone https://github.com/your-username/biometric-authentication.git
-    cd biometric-authentication
+    git clone https://github.com/your-username/anime-companion.git
+    cd anime-companion
     ```
 
 2. **Install dependencies**:
@@ -29,35 +32,7 @@ To run the project locally, follow these steps:
     flutter pub get
     ```
 
-3. **Set up Android files**:
-
-   Update your `MainActivity.kt` file located at `android/app/src/main/kotlin/com/example/password_manager/MainActivity.kt`:
-
-    ```kotlin
-    package com.example.password_manager
-
-    import io.flutter.embedding.android.FlutterFragmentActivity
-
-    class MainActivity: FlutterFragmentActivity() {
-        // ...
-    }
-    ```
-
-   Update your `AndroidManifest.xml` located at `android/app/src/main/AndroidManifest.xml`:
-
-    ```xml
-    <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.example.password_manager">
-        <uses-permission android:name="android.permission.USE_BIOMETRIC"/>
-        <application
-            android:label="password_manager"
-            android:name="${applicationName}"
-            android:icon="@mipmap/ic_launcher">
-        <!-- Other configurations -->
-        </application>
-    </manifest>
-    ```
-
-4. **Run the app**:
+3. **Run the app**:
 
     ```bash
     flutter run
@@ -80,22 +55,19 @@ lib/
 
 ### 🔐 How It Works
 
-The app uses the Local Authentication Plugin to access biometric sensors like fingerprint or face ID. Upon launching the app, users can tap a button to initiate biometric authentication. If the device supports biometrics and the user has registered their biometrics (e.g., fingerprint), the app prompts the user to authenticate.
-```
-If the authentication is successful, a success message is displayed.
-If the authentication fails, an error message is shown.
-```
+The app uses a public anime API to fetch details about various anime series. Users can explore new releases, popular titles, and detailed episode information.
 
-### 📲 Enabling Biometrics on Your Device
+1. Home Page: Displays new releases and popular anime with easy navigation.
+2. Anime Details: Provides in-depth information about selected anime, including synopsis, genres,   ratings, and episode listings.
+3. Notification Feature: Users can enable notifications for their favorite anime, receiving alerts when new episodes are released.
 
-Make sure biometric authentication is enabled on your device:
+### 📲 Enabling Notifications
+
+To enable notifications for new episodes:
 ```
-Android: Go to Settings > Security > Fingerprint/Face Unlock to enable biometrics.
-iOS: Go to Settings > Face ID & Passcode or Settings > Touch ID & Passcode.
+1. Allow notification permissions when prompted.
+2. Go to the settings in the app to manage notification preferences.
 ```
 
 ## 🎥 Photos
-<div>
-  <img src="assets/images/screen2.jpg" alt="Image 1" width="200" height="450" style="display: inline-block; margin-right: 10px;"/>
-  <img src="assets/images/screen1.jpg" alt="Image 2" width="200" height="450" style="display: inline-block;"/>
-</div>
+
